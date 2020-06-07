@@ -19,7 +19,7 @@ function HomebridgeGarageDoorAccessory(log, config) {
   this.hostname = config["host"] || "tasmota"
   this.password = config["password"] || "";
 
-  this.service = new Service.GarageDoorOpener(this.name);
+  this.service = new Service.Switch(this.name);
 
   this.service
     .getCharacteristic(Characteristic.On)
