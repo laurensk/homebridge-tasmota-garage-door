@@ -16,7 +16,7 @@ function HomebridgeGarageDoorAccessory(log, config) {
   this.hostname = config["hostname"] || "tasmota"
   this.password = config["password"] || "";
 
-  var accessoryInformation = new Service.AccessoryInformation();
+  let accessoryInformation = new Service.AccessoryInformation();
 
   accessoryInformation
     .setCharacteristic(Characteristic.Manufacturer, "Laurens K.")
@@ -30,7 +30,7 @@ function HomebridgeGarageDoorAccessory(log, config) {
     .on('get', this.getState.bind(this))
     .on('set', this.setState.bind(this));
 
-  this.log("Homebridge Garage Door Initialized")
+  this.log("Homebridge Garage-Door Initialized")
 }
 
 HomebridgeGarageDoorAccessory.prototype.getState = function (callback) {
