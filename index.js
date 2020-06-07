@@ -79,9 +79,9 @@ HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
         break;
     }
 
-    setTimeout(() => {
-      garageDoor.service.setCharacteristic(Characteristic.On, false);
-    }, 1000);
+    // setTimeout(() => {
+    //   garageDoor.service.setCharacteristic(Characteristic.On, false);
+    // }, 1000);
 
   })
 }
