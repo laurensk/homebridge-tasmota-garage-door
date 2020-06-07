@@ -16,13 +16,6 @@ function HomebridgeGarageDoorAccessory(log, config) {
   this.hostname = config["hostname"] || "tasmota"
   this.password = config["password"] || "";
 
-  let accessoryInformation = new Service.AccessoryInformation();
-
-  accessoryInformation
-    .setCharacteristic(Characteristic.Manufacturer, "Laurens K.")
-    .setCharacteristic(Characteristic.Model, "Tasmota Garage Door")
-    .setCharacteristic(Characteristic.SerialNumber, "homebridge-tasmota-garage-door");
-
   this.service = new Service.Switch(this.name);
 
   this.service
@@ -33,12 +26,26 @@ function HomebridgeGarageDoorAccessory(log, config) {
   this.log("Homebridge Garage-Door Initialized")
 }
 
+HomebridgeGarageDoorAccessory.prototype.getServices = function () {
+  if (!this.service)
+    return [];
+
+  const informationService = new Service.AccessoryInformation();
+
+  informationService
+    .setCharacteristic(Characteristic.Manufacturer, "Laurens K.")
+    .setCharacteristic(Characteristic.Model, "Tasmota Garage Door")
+    .setCharacteristic(Characteristic.SerialNumber, "HBTGD01")
+    .setCharacteristic(Characteristic.FirmwareRevision, packageJSON.version);
+
+  return [informationService, this.service];
+}
+
 HomebridgeGarageDoorAccessory.prototype.getState = function (callback) {
-  var that = this
   request("http://" + this.hostname + "/cm?user=admin&password=" + this.password + "&cmnd=Power" + this.relay, function (error, response, body) {
     if (error) return callback(error);
     var tasmota_reply = JSON.parse(body); // {"POWER":"ON"}
-    that.log("Garage Door: " + this.hostname + ", Relay " + this.relay + ", Get State: " + JSON.stringify(tasmota_reply));
+    this.log("Garage Door: " + this.hostname + ", Relay " + this.relay + ", Get State: " + JSON.stringify(tasmota_reply));
     switch (tasmota_reply["POWER" + this.relay]) {
       case "ON":
         callback(null, 1);
@@ -53,11 +60,10 @@ HomebridgeGarageDoorAccessory.prototype.getState = function (callback) {
 HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
   var newstate = "%20Off"
   if (toggle) newstate = "%20On"
-  var that = this
   request("http://" + this.hostname + "/cm?user=admin&password=" + this.password + "&cmnd=Power" + this.relay + newstate, function (error, response, body) {
     if (error) return callback(error);
     var sonoff_reply = JSON.parse(body); // {"POWER":"ON"}
-    that.log("Garage Door: " + this.hostname + ", Relay " + this.relay + ", Set State: " + JSON.stringify(sonoff_reply));
+    this.log("Garage Door: " + this.hostname + ", Relay " + this.relay + ", Set State: " + JSON.stringify(sonoff_reply));
     switch (sonoff_reply["POWER" + this.relay]) {
       case "ON":
         callback();
