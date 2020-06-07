@@ -1,4 +1,4 @@
-# homebridge-garage-door
+# homebridge-tasmota-garage-door
 
 Forked from https://github.com/ageorgios/homebridge-sonoff-tasmota-http
 

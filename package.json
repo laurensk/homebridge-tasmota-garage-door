@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-garage-door",
+  "name": "homebridge-tasmota-garage-door",
   "version": "1.0.0",
   "description": "Control Tasmota Relays to open garage doors through Homebridge",
   "main": "index.js",
@@ -21,10 +21,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/laurenskdev/homebridge-garage-door.git"
+    "url": "git+https://github.com/laurenskdev/homebridge-tasmota-garage-door.git"
   },
   "bugs": {
-    "url": "https://github.com/laurenskdev/homebridge-garage-door.git/issues"
+    "url": "https://github.com/laurenskdev/homebridge-tasmota-garage-door.git/issues"
   },
-  "homepage": "https://github.com/laurenskdev/homebridge-garage-door.git#readme"
+  "homepage": "https://github.com/laurenskdev/homebridge-tasmota-garage-door.git#readme"
 }

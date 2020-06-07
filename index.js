@@ -5,7 +5,7 @@ module.exports = function (homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
 
-  homebridge.registerAccessory("homebridge-garage-door", "Garage-Door", HomebridgeGarageDoorAccessory);
+  homebridge.registerAccessory("homebridge-tasmota-garage-door", "Garage-Door", HomebridgeGarageDoorAccessory);
 }
 
 function HomebridgeGarageDoorAccessory(log, config) {
