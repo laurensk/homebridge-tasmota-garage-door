@@ -15,7 +15,8 @@ function HomebridgeGarageDoorAccessory(log, config) {
   this.config = config;
   this.name = config["name"]
   this.relay = config["relay"] || "1"
-  this.hostname = config["hostname"] || "tasmota"
+  this.timeout = config["timeout"] || "1000"
+  this.hostname = config["host"] || "tasmota"
   this.password = config["password"] || "";
 
   this.service = new Service.Switch(this.name);
@@ -81,17 +82,7 @@ HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
 
     setTimeout(() => {
       garageDoor.service.getCharacteristic(Characteristic.On).updateValue(false);
-    }, 1000);
-
-    // this.switchService.getCharacteristic(Characteristic.On).updateValue(false);
-
-    // // setTimeout(() => {
-    // //   garageDoor.service.getCharacteristic();
-    // // }, 1500);
-
-    // setTimeout(() => {
-    //   garageDoor.service.setCharacteristic(Characteristic.On, false);
-    // }, 1000);
+    }, garageDoor.timeout);
 
   })
 }
