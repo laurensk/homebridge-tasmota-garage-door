@@ -1,6 +1,8 @@
 var Service, Characteristic;
 var request = require('request');
 
+const packageJSON = require('./package.json');
+
 module.exports = function (homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
@@ -78,8 +80,4 @@ HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
     }, 1000);
 
   })
-}
-
-HomebridgeGarageDoorAccessory.prototype.getServices = function () {
-  return [this.service];
 }
