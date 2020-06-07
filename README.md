@@ -6,7 +6,7 @@ Welcome to the Homebridge Tasmota Garage Door Plugin for [Homebridge](https://gi
 This plugin allows you to open and close your garage doors with Tasmota Relays using HomeKit and Siri.
 
 ## Configuration
-Please follow [my tutorial](https://github.com/LaurensKDev/homebridge-garage-door-instructions) on how to flash and configure Tasmota in order to use it with this plugin.
+Please follow [my tutorial](https://github.com/LaurensKDev/homebridge-garage-door-instructions) on how to flash and configure Tasmota to use it with this plugin.
 
 When your Tasmota relays are ready and configured correctly, add the following code to the accessories array in the Homebridge config file to get started.
 
