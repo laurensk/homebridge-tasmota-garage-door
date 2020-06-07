@@ -29,7 +29,9 @@ function HomebridgeGarageDoorAccessory(log, config) {
 }
 
 HomebridgeGarageDoorAccessory.prototype.getServices = function () {
-  if (!this.service)
+  var garageDoor = this
+  
+  if (!garageDoor.service)
     return [];
 
   const informationService = new Service.AccessoryInformation();
@@ -40,15 +42,16 @@ HomebridgeGarageDoorAccessory.prototype.getServices = function () {
     .setCharacteristic(Characteristic.SerialNumber, "HBTGD01")
     .setCharacteristic(Characteristic.FirmwareRevision, packageJSON.version);
 
-  return [informationService, this.service];
+  return [informationService, garageDoor.service];
 }
 
 HomebridgeGarageDoorAccessory.prototype.getState = function (callback) {
-  request("http://" + this.hostname + "/cm?user=admin&password=" + this.password + "&cmnd=Power" + this.relay, function (error, response, body) {
+  var garageDoor = this
+  request("http://" + garageDoor.hostname + "/cm?user=admin&password=" + garageDoor.password + "&cmnd=Power" + garageDoor.relay, function (error, response, body) {
     if (error) return callback(error);
     var tasmota_reply = JSON.parse(body); // {"POWER":"ON"}
-    this.log("Garage Door: " + this.hostname + ", Relay " + this.relay + ", Get State: " + JSON.stringify(tasmota_reply));
-    switch (tasmota_reply["POWER" + this.relay]) {
+    garageDoor.log("Garage Door: " + garageDoor.hostname + ", Relay " + garageDoor.relay + ", Get State: " + JSON.stringify(tasmota_reply));
+    switch (tasmota_reply["POWER" + garageDoor.relay]) {
       case "ON":
         callback(null, 1);
         break;
@@ -60,13 +63,14 @@ HomebridgeGarageDoorAccessory.prototype.getState = function (callback) {
 }
 
 HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
+  var garageDoor = this
   var newstate = "%20Off"
   if (toggle) newstate = "%20On"
-  request("http://" + this.hostname + "/cm?user=admin&password=" + this.password + "&cmnd=Power" + this.relay + newstate, function (error, response, body) {
+  request("http://" + garageDoor.hostname + "/cm?user=admin&password=" + garageDoor.password + "&cmnd=Power" + garageDoor.relay + newstate, function (error, response, body) {
     if (error) return callback(error);
     var sonoff_reply = JSON.parse(body); // {"POWER":"ON"}
-    this.log("Garage Door: " + this.hostname + ", Relay " + this.relay + ", Set State: " + JSON.stringify(sonoff_reply));
-    switch (sonoff_reply["POWER" + this.relay]) {
+    garageDoor.log("Garage Door: " + garageDoor.hostname + ", Relay " + garageDoor.relay + ", Set State: " + JSON.stringify(sonoff_reply));
+    switch (sonoff_reply["POWER" + garageDoor.relay]) {
       case "ON":
         callback();
         break;
@@ -76,7 +80,7 @@ HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
     }
 
     setTimeout(() => {
-      this.service.setCharacteristic(Characteristic.On, false);
+      garageDoor.service.setCharacteristic(Characteristic.On, false);
     }, 1000);
 
   })
