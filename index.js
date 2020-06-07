@@ -80,7 +80,7 @@ HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
     }
 
     setTimeout(() => {
-      garageDoor.homebridgeService.getCharacteristic();
+      garageDoor.service.getCharacteristic();
     }, 1500);
 
     // setTimeout(() => {
