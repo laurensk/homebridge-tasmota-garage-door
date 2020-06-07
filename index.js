@@ -16,6 +16,13 @@ function HomebridgeGarageDoorAccessory(log, config) {
   this.hostname = config["hostname"] || "tasmota"
   this.password = config["password"] || "";
 
+  this.accessoryInformation = new Service.AccessoryInformation();
+
+  accessoryInformation
+    .setCharacteristic(Characteristic.Manufacturer, "Laurens K.")
+    .setCharacteristic(Characteristic.Model, "Tasmota Garage Door")
+    .setCharacteristic(Characteristic.SerialNumber, "homebridge-tasmota-garage-door");
+
   this.service = new Service.Switch(this.name);
 
   this.service
