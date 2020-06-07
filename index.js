@@ -30,7 +30,7 @@ function HomebridgeGarageDoorAccessory(log, config) {
 
 HomebridgeGarageDoorAccessory.prototype.getServices = function () {
   var garageDoor = this
-  
+
   if (!garageDoor.service)
     return [];
 
@@ -78,6 +78,10 @@ HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
         callback();
         break;
     }
+
+    setTimeout(() => {
+      this.homebridgeService.getCharacteristic();
+    }, 1500);
 
     // setTimeout(() => {
     //   garageDoor.service.setCharacteristic(Characteristic.On, false);
