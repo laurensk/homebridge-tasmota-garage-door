@@ -16,7 +16,7 @@ function HomebridgeGarageDoorAccessory(log, config) {
   this.hostname = config["hostname"] || "tasmota"
   this.password = config["password"] || "";
 
-  this.accessoryInformation = new Service.AccessoryInformation();
+  var accessoryInformation = new Service.AccessoryInformation();
 
   accessoryInformation
     .setCharacteristic(Characteristic.Manufacturer, "Laurens K.")
