@@ -16,7 +16,7 @@ When your Tasmota Relays are ready and configured correctly, add the following c
 {
   "accessory": "Garage-Door",
   "name": "Car",
-  "hostname": "Hostname or IP of Tasmota Relay"
+  "host": "Hostname or IP of Tasmota Relay"
 }
 ```
 
@@ -26,8 +26,8 @@ When your Tasmota Relays are ready and configured correctly, add the following c
 {
   "accessory": "Garage-Door",
   "name": "Car",
-  "relay": "2",
-  "hostname": "Hostname or IP of Tasmota Relay"
+  "host": "Hostname or IP of Tasmota Relay",
+  "relay": "2"
 }
 ```
 
@@ -37,9 +37,9 @@ When your Tasmota Relays are ready and configured correctly, add the following c
 {
   "accessory": "Garage-Door",
   "name": "Car",
+  "host": "Hostname or IP of Tasmota Relay",
   "relay": "2",
-  "password": "Password of the Web-Interface",
-  "hostname": "Hostname or IP of Tasmota Relay"
+  "password": "Password of the Web-Interface"
 }
 ```
 
