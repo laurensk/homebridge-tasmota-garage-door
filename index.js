@@ -48,7 +48,7 @@ HomebridgeGarageDoorAccessory.prototype.getServices = function () {
 
 HomebridgeGarageDoorAccessory.prototype.getState = function (callback) {
   var garageDoor = this
-  request("http://" + garageDoor.hostname + "/cm?user=admin&password=" + garageDoor.password + "&cmnd=Power" + garageDoor.relay, function (error, response, body) {
+  request("http://" + garageDoor.hostname + "/cm?user=admin&password=" + encodeURIComponent(garageDoor.password) + "&cmnd=Power" + garageDoor.relay, function (error, response, body) {
     if (error) return callback(error);
     var tasmota_reply = JSON.parse(body); // {"POWER":"ON"}
     garageDoor.log("Garage-Door: " + garageDoor.hostname + ", Relay " + garageDoor.relay + ", Get State: " + JSON.stringify(tasmota_reply));
@@ -67,7 +67,7 @@ HomebridgeGarageDoorAccessory.prototype.setState = function (toggle, callback) {
   var garageDoor = this
   var newstate = "%20Off"
   if (toggle) newstate = "%20On"
-  request("http://" + garageDoor.hostname + "/cm?user=admin&password=" + garageDoor.password + "&cmnd=Power" + garageDoor.relay + newstate, function (error, response, body) {
+  request("http://" + garageDoor.hostname + "/cm?user=admin&password=" + encodeURIComponent(garageDoor.password) + "&cmnd=Power" + garageDoor.relay + newstate, function (error, response, body) {
     if (error) return callback(error);
     var sonoff_reply = JSON.parse(body); // {"POWER":"ON"}
     garageDoor.log("Garage-Door: " + garageDoor.hostname + ", Relay " + garageDoor.relay + ", Set State: " + JSON.stringify(sonoff_reply));
