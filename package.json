@@ -1,6 +1,6 @@
 {
   "name": "homebridge-tasmota-garage-door",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Open and Close your Garage Doors with Tasmota Relays",
   "main": "index.js",
   "scripts": {
@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/laurenskdev/homebridge-tasmota-garage-door.git/issues"
   },
-  "homepage": "https://github.com/laurenskdev/homebridge-tasmota-garage-door.git#readme"
+  "homepage": "https://github.com/laurenskdev/homebridge-tasmota-garage-door.git#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
