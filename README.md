@@ -44,7 +44,7 @@ When your Tasmota Relays are ready and configured correctly, add the following c
 ```
 
 ## Timeslots
-You can use Timeslots to prevent simultaneous requests to the relays. Since most remote controls for garage doors doesn't support simultaneous button presses, you can't use them in HomeKit Scenes without further configuration. By using Timeslots in version 2.0.0 and newer, you can enable Timeslots easily.
+You can use Timeslots to prevent simultaneous requests to the relays. Since most remote controls for garage doors doesn't support simultaneous button presses, you can't use them in HomeKit Scenes without further configuration. By using Timeslots in version 2.0.0 and newer, you can enable a smart, unmeasurable delay between requests easily and without further knowledge.
 
 ```json
 {
@@ -68,7 +68,7 @@ You can use Timeslots to prevent simultaneous requests to the relays. Since most
 ```
 
 Please take a closer look at the 'timeslotIndex' property and make sure it's an increasing number starting at 1 for all your garage doors (1, 2, 3, 4, ...).
-This property is used to create an unmessurage delay between single requests in order to prevent simultaneous calls to the Homebridge.
+This property is used to create an unmeasurable delay between single requests in order to prevent simultaneous calls to the Homebridge.
 
 Note that the Timeslots feature won't work if you don't provide the 'timeslotIndex' property for every garage door which has 'useTimeslots' enabled.
 
